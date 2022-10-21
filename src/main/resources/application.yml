@@ -1,0 +1,39 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  application:
+    name: archref
+  h2:
+    console:
+      enabled: true
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+  rabbitmq:
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+management:
+  endpoint:
+    health:
+      show-details: ${ACTUATOR_HEALTH_DETAILS:always}
+  endpoints:
+    web:
+      exposure:
+        include: ${ACTUATOR_ENDPOINTS:health}
+queue:
+  person-created: ${PERSON_CREATED_QUEUE:persons.v1.person-created}
+character-service:
+  url: ${CHARACTER_URL:https://anapioficeandfire.com/api/characters}
+logging:
+  level:
+    root: ${LOGGING_LEVEL:info}
+    org:
+      springframework:
+        web: info
+      com:
+        felipecamatta: debug
+  file:
+    name: ${LOGGING_NAME:archref.log}
+    path: ${LOGGING_PATH:.}
